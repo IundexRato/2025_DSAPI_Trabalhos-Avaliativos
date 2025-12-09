@@ -1,0 +1,32 @@
+{
+  "cidades": [
+    { "id": 1, "nome": "São Paulo" },
+    { "id": 2, "nome": "Campinas" },
+    { "id": 3, "nome": "Santos" }
+  ],
+  "categorias": [
+    { "id": 1, "nome": "Eletrônicos" },
+    { "id": 2, "nome": "Roupas" },
+    { "id": 3, "nome": "Livros" }
+  ],
+  "clientes": [
+    { "id": 1, "nome": "João Silva", "altura": 1.8, "nascim": "1990-05-10", "cidade_id": 1 },
+    { "id": 2, "nome": "Maria Souza", "altura": 1.65, "nascim": "1995-09-22", "cidade_id": 2 }
+  ],
+  "produtos": [
+    { "id": 1, "nome": "Notebook", "preco": 3500, "quantidade": 10, "categoria_id": 1 },
+    { "id": 2, "nome": "Camiseta", "preco": 80, "quantidade": 50, "categoria_id": 2 },
+    { "id": 3, "nome": "Livro JS", "preco": 120, "quantidade": 30, "categoria_id": 3 }
+  ],
+  "pedidos": [
+    {
+      "id": 1,
+      "cliente_id": 1,
+      "endereco": "Rua das Flores, 123",
+      "produtos": [
+        { "produto_id": 1, "preco": 3500, "quantidade": 1 },
+        { "produto_id": 3, "preco": 120, "quantidade": 2 }
+      ]
+    }
+  ]
+}
