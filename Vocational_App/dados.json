@@ -1,0 +1,29 @@
+[
+  { "texto": "Gosta de resolver problemas matemáticos complexos?", "categoria": "Exatas", "ordem": 1 },
+  { "texto": "Prefere trabalhar com lógica e dados exatos?", "categoria": "Exatas", "ordem": 2 },
+  { "texto": "Se interessa por física e funcionamento das coisas?", "categoria": "Exatas", "ordem": 3 },
+  { "texto": "Gosta de programar ou entender algoritmos?", "categoria": "Exatas", "ordem": 4 },
+  { "texto": "Tem facilidade com estatística e probabilidade?", "categoria": "Exatas", "ordem": 5 },
+  { "texto": "Prefere resultados objetivos a subjetivos?", "categoria": "Exatas", "ordem": 6 },
+  
+  { "texto": "Se interessa profundamente por história e política?", "categoria": "Humanas", "ordem": 7 },
+  { "texto": "Gosta de ensinar e debater ideias?", "categoria": "Humanas", "ordem": 8 },
+  { "texto": "Tem facilidade para entender sentimentos alheios?", "categoria": "Humanas", "ordem": 9 },
+  { "texto": "Se interessa por leis e direitos sociais?", "categoria": "Humanas", "ordem": 10 },
+  { "texto": "Gosta de ler sobre filosofia e sociologia?", "categoria": "Humanas", "ordem": 11 },
+  { "texto": "Prefere lidar com pessoas a máquinas?", "categoria": "Humanas", "ordem": 12 },
+  
+  { "texto": "Tem curiosidade sobre anatomia e corpo humano?", "categoria": "Biológicas", "ordem": 13 },
+  { "texto": "Gosta de cuidar de animais ou plantas?", "categoria": "Biológicas", "ordem": 14 },
+  { "texto": "Se interessa por sustentabilidade e ecologia?", "categoria": "Biológicas", "ordem": 15 },
+  { "texto": "Não se importa em lidar com ambientes hospitalares?", "categoria": "Biológicas", "ordem": 16 },
+  { "texto": "Gosta de entender a química dos alimentos?", "categoria": "Biológicas", "ordem": 17 },
+  { "texto": "Se interessa por genética e evolução?", "categoria": "Biológicas", "ordem": 18 },
+  
+  { "texto": "Gosta de desenhar, pintar ou criar visualmente?", "categoria": "Artísticas", "ordem": 19 },
+  { "texto": "Se expressa bem através da música ou dança?", "categoria": "Artísticas", "ordem": 20 },
+  { "texto": "Tem interesse por cinema, teatro e atuação?", "categoria": "Artísticas", "ordem": 21 },
+  { "texto": "Gosta de criar designs inovadores?", "categoria": "Artísticas", "ordem": 22 },
+  { "texto": "Tem facilidade com escrita criativa e ficção?", "categoria": "Artísticas", "ordem": 23 },
+  { "texto": "Valoriza a estética e a beleza das formas?", "categoria": "Artísticas", "ordem": 24 }
+]

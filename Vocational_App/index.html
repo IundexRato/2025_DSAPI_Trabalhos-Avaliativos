@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Vocacional 2.0</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; color: #333; }
+        .container { max-width: 900px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .hidden { display: none !important; }
+        button { padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; margin: 5px; font-weight: 600; color: white; }
+        button:hover { opacity: 0.9; }
+        .btn-primary { background-color: #4CAF50; }
+        .btn-danger { background-color: #f44336; }
+        .btn-info { background-color: #2196F3; }
+        .btn-warning { background-color: #ff9800; }
+        .btn-success { background-color: #10b981; } 
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; margin-bottom: 25px; }
+        .card { border: 1px solid #e1e1e1; padding: 20px; margin-bottom: 15px; border-radius: 8px; background-color: white; }
+        input, select { padding: 12px; width: 100%; box-sizing: border-box; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; }
+        .progress-container { background-color: #e0e0e0; border-radius: 10px; height: 10px; margin-bottom: 25px; overflow: hidden; }
+        .progress-fill { height: 100%; background-color: #4CAF50; width: 0%; transition: width 0.3s ease; }
+        .question-box { text-align: center; padding: 40px 20px; background-color: #f9f9f9; border-radius: 8px; margin-bottom: 20px; }
+        .result-box { text-align: center; padding: 30px; background: #e8f5e9; border-radius: 10px; border: 1px solid #c8e6c9; }
+        .result-title { color: #2e7d32; font-size: 2.5em; margin: 10px 0; }
+        #tela-login { text-align: center; max-width: 400px; margin: 50px auto; }
+        
+        /* Estilos da Tabela */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border-bottom: 1px solid #eee; padding: 12px 15px; text-align: left; vertical-align: middle; }
+        
+        /* Personalização dos Botões da Tabela (Editar e Excluir) */
+        #tabela-perguntas td:last-child {
+            display: flex;
+            flex-direction: column; /* Empilha os botões (um em cima do outro) */
+            gap: 5px; /* Espaço entre eles */
+        }
+        
+        #tabela-perguntas td:last-child button {
+            width: 100%; /* Botões ocupam toda a largura da célula */
+            margin: 0;
+            padding: 8px;
+            font-size: 0.9em;
+            color: white !important; /* Garante texto branco */
+        }
+
+        /* Primeiro Botão (Editar) -> Azul */
+        #tabela-perguntas td:last-child button:first-child {
+            background-color: #2196F3; 
+        }
+        #tabela-perguntas td:last-child button:first-child:hover {
+            background-color: #1976D2;
+        }
+
+        /* Último Botão (Excluir) -> Vermelho */
+        #tabela-perguntas td:last-child button:last-child {
+            background-color: #f44336; 
+        }
+        #tabela-perguntas td:last-child button:last-child:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- LOGIN -->
+        <div id="tela-login">
+            <div style="font-size: 50px;">🧠</div>
+            <h1>Teste Vocacional Avançado</h1>
+            <input type="text" id="loginNome" placeholder="Seu nome...">
+            <button class="btn-primary" style="width: 100%; margin-top: 10px;" onclick="fazerLogin()">Entrar</button>
+        </div>
+
+        <!-- APP -->
+        <div id="app-principal" class="hidden">
+            <div class="header">
+                <div>👤 <span id="usuarioDisplay">Visitante</span></div>
+                <div>
+                    <button class="btn-warning" onclick="mostrarDashboard()">Dashboard</button>
+                    <button class="btn-info" onclick="mostrarAdmin()">Admin</button>
+                    <button class="btn-danger" onclick="fazerLogout()">Sair</button>
+                </div>
+            </div>
+
+            <div id="view-dashboard">
+                <h2>👋 Painel do Usuário</h2>
+                <div class="card" style="text-align: center; padding: 40px; border-left: 5px solid #4CAF50;">
+                    <h3>Novo Teste Disponível</h3>
+                    <p>Perguntas aleatórias e análise de permutação 4-vias.</p>
+                    <button class="btn-primary" onclick="iniciarTeste()">🚀 INICIAR</button>
+                </div>
+                <h3>Histórico</h3>
+                <div id="lista-historico"></div>
+            </div>
+
+            <div id="view-quiz" class="hidden">
+                <div style="display: flex; justify-content: space-between;"><span>Progresso</span><span id="contador-pergunta">0/0</span></div>
+                <div class="progress-container"><div id="progresso" class="progress-fill"></div></div>
+                <div class="question-box">
+                    <h2 id="pergunta-texto">...</h2>
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button class="btn-danger" onclick="responder(false)">❌ Não</button>
+                        <button class="btn-primary" onclick="responder(true)">✅ Sim</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-resultado" class="hidden">
+                <div class="result-box">
+                    <h3>Profissão Recomendada:</h3>
+                    <h1 id="res-titulo" class="result-title"></h1>
+                    <p id="res-descricao" style="font-size: 1.3em;"></p>
+                </div>
+                <div class="card" style="margin-top: 20px;">
+                    <h4>Ranking das Áreas:</h4>
+                    <pre id="res-detalhes" style="background: #f4f4f4; padding: 10px; border-radius: 6px;"></pre>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn-info" onclick="mostrarDashboard()">Voltar</button>
+                </div>
+            </div>
+
+            <div id="view-admin" class="hidden">
+                <h2>Admin</h2>
+                <div class="card">
+                    <h3>Gerenciar Perguntas</h3>
+                    <input type="text" id="adminTexto" placeholder="Texto da pergunta...">
+                    <select id="adminCategoria">
+                        <option value="Exatas">Exatas</option>
+                        <option value="Humanas">Humanas</option>
+                        <option value="Biológicas">Biológicas</option>
+                        <option value="Artísticas">Artísticas</option>
+                    </select>
+                    
+                    <!-- Botões dinâmicos: Adicionar OU Editar/Cancelar -->
+                    <div style="margin-top: 15px; display: flex; gap: 10px; align-items: center;">
+                        <div id="btn-add-group">
+                            <button class="btn-primary" onclick="adicionarPergunta()">Adicionar Pergunta</button>
+                        </div>
+                        
+                        <div id="btn-edit-group" class="hidden" style="display: flex; gap: 10px;">
+                            <button class="btn-success" onclick="salvarEdicao()">Salvar Alteração</button>
+                            <button class="btn-warning" onclick="cancelarEdicao()">Cancelar</button>
+                        </div>
+
+                        <button class="btn-info" onclick="carregarDoJSON()" style="margin-left: auto;">Importar JSON</button>
+                    </div>
+                </div>
+                <table>
+                    <thead><tr><th>ID</th><th>Texto</th><th>Categoria</th><th style="width: 120px;">Ação</th></tr></thead>
+                    <tbody id="tabela-perguntas"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
